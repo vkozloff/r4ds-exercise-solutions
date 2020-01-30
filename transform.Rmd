@@ -277,12 +277,18 @@ But the departure was delayed `r comma_int(most_delayed$dep_delay)` minutes, whi
 The departure time is the day after the scheduled departure time.
 Be happy that you weren't on that flight, and if you happened to have been on that flight and are reading this, I'm sorry for you.
 
-Similarly, the earliest departing flight can be found by sorting `dep_delay` in ascending order.
+Similarly, the flights that left earliest relative to the scheduled departure time can be found by sorting `dep_delay` in ascending order.
 ```{r}
 arrange(flights, dep_delay)
 ```
 Flight `r left_earliest$carrier` `r left_earliest$flight` (`r left_earliest$origin` to `r left_earliest$dest`) scheduled to depart on `r format(left_earliest$date, "%B %d, %Y at %H:%M")`
 departed `r comma_int(abs(left_earliest$dep_delay))` minutes early.
+
+The flight that left at the earliest time of day can be found by sorting `dep_time` in ascending order.
+```{r}
+arrange(flights, dep_time)
+```
+
 
 </div>
 
